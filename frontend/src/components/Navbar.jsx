@@ -140,21 +140,23 @@ const Navbar = () => {
 
             {/* Right Side Actions */}
             <div className="flex items-center space-x-3">
-              {isLoggedIn ? (
-                <>
-                  {/* Wishlist with Dropdown */}
-                  <div className="relative">
-                    <button
-                      onClick={() => setWishlistVisible(!wishlistVisible)}
-                      className="relative flex items-center justify-center w-12 h-12 rounded-2xl bg-gradient-to-br from-pink-50 to-rose-50 text-pink-600 hover:from-pink-100 hover:to-rose-100 border border-pink-100 transition-all duration-300 hover:scale-105 hover:shadow-lg group"
-                    >
-                      <Heart className="w-5 h-5 transition-transform group-hover:scale-110" />
-                      {wishlist.length > 0 && (
-                        <span className="absolute -top-1 -right-1 bg-gradient-to-r from-pink-500 to-rose-500 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center shadow-lg transform group-hover:scale-110">
-                          {wishlist.length}
-                        </span>
-                      )}
-                    </button>
+              {/* Desktop Only - Wishlist, Cart, User */}
+              <div className="hidden lg:flex items-center space-x-3">
+                {isLoggedIn ? (
+                  <>
+                    {/* Wishlist with Dropdown */}
+                    <div className="relative">
+                      <button
+                        onClick={() => setWishlistVisible(!wishlistVisible)}
+                        className="relative flex items-center justify-center w-12 h-12 rounded-2xl bg-gradient-to-br from-pink-50 to-rose-50 text-pink-600 hover:from-pink-100 hover:to-rose-100 border border-pink-100 transition-all duration-300 hover:scale-105 hover:shadow-lg group"
+                      >
+                        <Heart className="w-5 h-5 transition-transform group-hover:scale-110" />
+                        {wishlist.length > 0 && (
+                          <span className="absolute -top-1 -right-1 bg-gradient-to-r from-pink-500 to-rose-500 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center shadow-lg transform group-hover:scale-110">
+                            {wishlist.length}
+                          </span>
+                        )}
+                      </button>
 
                     {/* Wishlist Dropdown */}
                     {wishlistVisible && (
@@ -331,6 +333,7 @@ const Navbar = () => {
                   </Link>
                 </>
               )}
+              </div>
 
               {/* Mobile Menu Button */}
               <button
@@ -382,6 +385,71 @@ const Navbar = () => {
                         <span>{item.label}</span>
                       </NavLink>
                     ))}
+                    
+                    {/* Mobile Only - Wishlist & Cart */}
+                    {isLoggedIn && (
+                      <>
+                        <button
+                          onClick={() => {
+                            setMobileMenuVisible(false);
+                            setWishlistVisible(true);
+                          }}
+                          className="flex items-center justify-between w-full px-4 py-4 text-base font-medium text-gray-700 hover:text-pink-600 hover:bg-pink-50 rounded-2xl transition-all duration-300"
+                        >
+                          <div className="flex items-center space-x-4">
+                            <Heart className="w-5 h-5" />
+                            <span>Wishlist</span>
+                          </div>
+                          {wishlist.length > 0 && (
+                            <span className="bg-pink-500 text-white text-xs font-bold rounded-full w-6 h-6 flex items-center justify-center">
+                              {wishlist.length}
+                            </span>
+                          )}
+                        </button>
+                        
+                        <button
+                          onClick={() => {
+                            setMobileMenuVisible(false);
+                            setCartVisible(true);
+                          }}
+                          className="flex items-center justify-between w-full px-4 py-4 text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-2xl transition-all duration-300"
+                        >
+                          <div className="flex items-center space-x-4">
+                            <FaShoppingCart className="w-5 h-5" />
+                            <span>Shopping Cart</span>
+                          </div>
+                          {cartItems.length > 0 && (
+                            <span className="bg-blue-500 text-white text-xs font-bold rounded-full w-6 h-6 flex items-center justify-center">
+                              {cartItems.length}
+                            </span>
+                          )}
+                        </button>
+                        
+                        <button
+                          onClick={() => {
+                            setMobileMenuVisible(false);
+                            navigate("/profile");
+                          }}
+                          className="flex items-center space-x-4 w-full px-4 py-4 text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-2xl transition-all duration-300"
+                        >
+                          <User className="w-5 h-5" />
+                          <span>My Profile</span>
+                        </button>
+                        
+                        {user?.role === "admin" && (
+                          <button
+                            onClick={() => {
+                              setMobileMenuVisible(false);
+                              navigate("/admin");
+                            }}
+                            className="flex items-center space-x-4 w-full px-4 py-4 text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-2xl transition-all duration-300"
+                          >
+                            <Grid className="w-5 h-5" />
+                            <span>Admin Dashboard</span>
+                          </button>
+                        )}
+                      </>
+                    )}
                   </div>
 
                   {/* Auth Section */}
