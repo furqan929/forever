@@ -109,7 +109,7 @@ const Navbar = () => {
   return (
     <>
       {/* Main Navbar */}
-      <nav className="h-[80px] w-full shadow-lg border-b border-gray-200 fixed top-0 z-40 backdrop-blur-lg bg-white/95">
+      <nav className="h-[80px] w-full shadow-lg border-b-2 border-gray-300 fixed top-0 z-40 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-20">
             {/* Logo */}
@@ -162,7 +162,7 @@ const Navbar = () => {
 
                       {/* Wishlist Dropdown */}
                       {wishlistVisible && (
-                        <div className="absolute right-0 mt-3 w-80 bg-white/95 backdrop-blur-lg rounded-2xl shadow-2xl border border-gray-200 py-4 z-50 animate-in fade-in slide-in-from-top-5 max-h-96 overflow-hidden flex flex-col">
+                        <div className="absolute right-0 mt-3 w-80 bg-white rounded-2xl shadow-2xl border-2 border-gray-300 py-4 z-50 animate-in fade-in slide-in-from-top-5 max-h-96 overflow-hidden flex flex-col">
                           {/* Header */}
                           <div className="px-4 pb-3 border-b border-gray-200">
                             <div className="flex items-center justify-between">
@@ -264,7 +264,7 @@ const Navbar = () => {
                       </button>
 
                       {dropdownOpen && (
-                        <div className="absolute right-0 mt-3 w-56 bg-white/95 backdrop-blur-lg rounded-2xl shadow-2xl border border-gray-200 py-2 z-50 animate-in fade-in slide-in-from-top-5">
+                        <div className="absolute right-0 mt-3 w-56 bg-white rounded-2xl shadow-2xl border-2 border-gray-300 py-2 z-50 animate-in fade-in slide-in-from-top-5">
                           <button
                             onClick={() => {
                               setDropdownOpen(false);
@@ -504,17 +504,17 @@ const Navbar = () => {
         <div className="fixed inset-0 z-50 flex">
           {/* Background Overlay */}
           <div
-            className="fixed inset-0 bg-black/30 backdrop-blur-sm transition-opacity duration-500"
+            className="fixed inset-0 bg-black/70 backdrop-blur-md transition-opacity duration-500"
             onClick={() => setCartVisible(false)}
           />
 
           {/* Cart Panel */}
           <div
             className={`
-              fixed inset-y-0 right-0 max-w-md w-full bg-white/95 backdrop-blur-lg shadow-2xl 
+              fixed inset-y-0 right-0 max-w-md w-full bg-white shadow-2xl 
               transform transition-transform duration-500 ease-out
               ${cartVisible ? 'translate-x-0' : 'translate-x-full'}
-              flex flex-col border-l border-gray-200
+              flex flex-col border-l-2 border-gray-300
             `}
           >
             {/* Header */}
@@ -609,7 +609,7 @@ const Navbar = () => {
 
             {/* Footer */}
             {cartItems.length > 0 && (
-              <div className="border-t border-gray-200 p-6 space-y-4 bg-white/80 backdrop-blur-md">
+              <div className="border-t-2 border-gray-300 p-6 space-y-4 bg-white shadow-lg">
                 <div className="flex justify-between items-center text-xl">
                   <span className="font-bold text-gray-900">Total Amount:</span>
                   <span className="font-bold text-transparent bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text">
