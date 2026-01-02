@@ -3,7 +3,6 @@ import { Link, useParams } from "react-router-dom";
 import { FaHeart, FaShoppingCart, FaStar, FaTag } from "react-icons/fa";
 import Reviews from "./Reviews";
 import { useMyContext } from "../context/Context";
-import LoadingSpinner from "./LoadingSpinner";
 
 const SingleProduct = () => {
   const { id } = useParams();
