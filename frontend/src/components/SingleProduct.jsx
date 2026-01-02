@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useCallback } from "react";
+import { useEffect, useMemo, useCallback } from "react";
 import { Link, useParams } from "react-router-dom";
 import { FaHeart, FaShoppingCart, FaStar, FaTag } from "react-icons/fa";
 import Reviews from "./Reviews";
@@ -281,4 +281,4 @@ const SingleProduct = () => {
   );
 };
 
-export default React.memo(SingleProduct);
+export default SingleProduct;
