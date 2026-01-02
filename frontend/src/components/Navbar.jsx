@@ -350,13 +350,13 @@ const Navbar = () => {
         {mobileMenuVisible && (
           <div className="fixed inset-0 z-[70] lg:hidden">
             <div
-              className="fixed inset-0 bg-black/50 backdrop-blur-sm transition-opacity duration-300"
+              className="fixed inset-0 bg-black/70 backdrop-blur-md transition-opacity duration-300"
               onClick={() => setMobileMenuVisible(false)}
             />
-            <div className="fixed inset-y-0 right-0 max-w-sm w-full bg-white/95 backdrop-blur-lg shadow-2xl border-l border-gray-200 transform transition-transform duration-300 ease-out">
+            <div className="fixed inset-y-0 right-0 max-w-sm w-full bg-white shadow-2xl border-l-2 border-gray-300 transform transition-transform duration-300 ease-out">
               <div className="flex flex-col h-full">
                 {/* Header */}
-                <div className="flex items-center justify-between p-6 border-b border-gray-200 bg-white/80">
+                <div className="flex items-center justify-between p-6 border-b-2 border-gray-200 bg-white shadow-sm">
                   <img src={assets.logo} className="h-8 w-auto" alt="Logo" />
                   <button
                     onClick={() => setMobileMenuVisible(false)}
