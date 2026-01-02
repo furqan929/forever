@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400..700&family=Prata&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+@import "tailwindcss";
+
+.sidebar-h {
+    height: calc(100vh - 80px);
+}
+
+.prata-regular {
+    font-family: "Prata", serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+a.active hr {
+    display: block;
+}
+
+@media (max-width:640px) {
+    a.active {
+        background-color: black;
+        color: white;
+    }
+}
+
+.showParent:hover .show {
+    opacity: 0.4;
+    visibility: visible;
+}
+.main-section{
+    width: 70%;
+    margin-left: 30%;
+    margin-top: 50px;
+}
