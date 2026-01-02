@@ -68,7 +68,7 @@ const MultiStepCheckout = () => {
 
     const fetchCartItems = async () => {
         try {
-            const response = await apiCall('/cart/getCart');
+            const response = await apiCall('/api/cart/getCart');
             
             // Backend returns cart object with items array inside
             const items = response.items || [];
@@ -222,7 +222,7 @@ const MultiStepCheckout = () => {
         if (newQuantity < 1) return;
 
         try {
-            await apiCall('/cart/updateCart', {
+            await apiCall('/api/cart/addCart', {
                 method: 'POST',
                 body: JSON.stringify({
                     productId: id,
@@ -247,7 +247,7 @@ const MultiStepCheckout = () => {
 
     const removeItem = async (id) => {
         try {
-            await apiCall(`/cart/deleteCart/${id}`, {
+            await apiCall(`/api/cart/deleteCart/${id}`, {
                 method: 'DELETE'
             });
 
@@ -343,7 +343,7 @@ const MultiStepCheckout = () => {
                 promoCode: promoApplied ? promoCode : null
             };
 
-            const response = await apiCall('/orders/place1', {
+            const response = await apiCall('/api/orders/place1', {
                 method: 'POST',
                 body: JSON.stringify(orderData)
             });
