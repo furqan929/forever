@@ -18,7 +18,10 @@ connected()
 let app = express()
 
 app.use(express.json())
-app.use(cors())
+app.use(cors({
+    origin: process.env.FRONTEND_URL || '*',
+    credentials: true
+}))
 
 
 app.use("/api/auth", AuthRoute)
@@ -41,9 +44,11 @@ app.use("/api/user", user);
 
 app.use("/api/payment", payment)
 
+// Root route for health check
+app.get("/", (req, res) => {
+    res.json({ message: "Backend API is running", status: "success" })
+})
 
-
-app.listen(process.env.PORT, () => {
-    console.log("App Is Runing");
-
+app.listen(process.env.PORT || 3000, () => {
+    console.log("App Is Running");
 })
