@@ -69,23 +69,30 @@ const MultiStepCheckout = () => {
     const fetchCartItems = async () => {
         try {
             const response = await apiCall('/cart/getCart');
+            console.log('Cart API Response:', response);
+            
             if (response.items && response.items.length > 0) {
-                const formattedItems = response.items.map(item => ({
-                    id: item.product._id,
-                    name: item.product.name,
-                    price: item.product.price,
-                    originalPrice: item.product.discountedPrice > 0 ? item.product.price : null,
-                    finalPrice: item.product.discountedPrice > 0 ? item.product.discountedPrice : item.product.price,
-                    quantity: item.quantity,
-                    image: item.product.image || "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=100&h=100&fit=crop",
-                    rating: item.product.rating || 0,
-                    numReviews: item.product.numReviews || 0,
-                    inStock: item.product.stock > 0,
-                    stock: item.product.stock,
-                    category: item.product.category
-                }));
+                const formattedItems = response.items.map(item => {
+                    console.log('Processing item:', item);
+                    return {
+                        id: item.product?._id || item._id,
+                        name: item.product?.name || item.name || 'Unknown Product',
+                        price: item.product?.price || item.price || 0,
+                        originalPrice: item.product?.price || item.price || 0,
+                        finalPrice: item.product?.discountedPrice || item.discountedPrice || item.product?.price || item.price || 0,
+                        quantity: item.quantity || 1,
+                        image: item.product?.image || item.image || "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=100&h=100&fit=crop",
+                        rating: item.product?.rating || item.rating || 0,
+                        numReviews: item.product?.numReviews || item.numReviews || 0,
+                        inStock: (item.product?.stock || item.stock || 0) > 0,
+                        stock: item.product?.stock || item.stock || 0,
+                        category: item.product?.category || item.category || 'General'
+                    };
+                });
+                console.log('Formatted cart items:', formattedItems);
                 setCartItems(formattedItems);
             } else {
+                console.log('No items in cart');
                 setCartItems([]);
             }
         } catch (error) {
