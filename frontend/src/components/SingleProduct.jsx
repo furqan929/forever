@@ -1,9 +1,8 @@
-import { useEffect, useMemo, useCallback } from "react";
+import React, { useEffect, useMemo, useCallback } from "react";
 import { Link, useParams } from "react-router-dom";
 import { FaHeart, FaShoppingCart, FaStar, FaTag } from "react-icons/fa";
 import Reviews from "./Reviews";
 import { useMyContext } from "../context/Context";
-import LoadingSpinner from "./LoadingSpinner";
 
 const SingleProduct = () => {
   const { id } = useParams();
@@ -52,14 +51,7 @@ const SingleProduct = () => {
   }, [product?._id, addToWishlist]);
 
   // Loading and error states
-  if (loading) {
-    return (
-      <div className="flex justify-center items-center min-h-96 px-4">
-        <LoadingSpinner />
-        <span className="ml-3 text-gray-600 text-sm sm:text-base">Loading product details...</span>
-      </div>
-    );
-  }
+
 
   if (error) {
     return (
