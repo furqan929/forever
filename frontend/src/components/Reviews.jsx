@@ -1,45 +1,8 @@
 import axios from 'axios'
 import React, { useState } from 'react'
 import { toast } from 'react-toastify'
-import { FaStar } from "react-icons/fa";
-import { API_BASE_URL } from '../config/api';
-
-const Reviews = ({ id, getReview }) => {
-  let [comment, setComment] = useState("")
-  let [rating, setRating] = useState(0);
-
-  let Review = async () => {
-    let token = localStorage.getItem("token");
-
-    if (!token) {
-      toast("Please Login First.");
-      return;
-    }
-
-    try {
-      let res = await axios.post(
-        `${API_BASE_URL}/api/products/${id}/review`,
-        {
-          comment: comment.trim(),
-          rating,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-      setComment("");
-      setRating(0);
-      getReview()
-      toast.success("Review added successfully!");
-    } catch (error) {
-      toast(error.response?.data?.message || "Failed to add review");
-    }
-  };
-import React, { useState } from 'react'
-import { toast, ToastContainer } from 'react-toastify'
 import { FaStar, FaPaperPlane, FaEdit } from "react-icons/fa";
+import { API_BASE_URL } from '../config/api';
 
 const Reviews = ({ id, getReview }) => {
   let [comment, setComment] = useState("")
@@ -69,7 +32,7 @@ const Reviews = ({ id, getReview }) => {
 
     try {
       let res = await axios.post(
-        `http://localhost:3000/api/products/${id}/review`,
+        `${API_BASE_URL}/api/products/${id}/review`,
         {
           comment: comment.trim(),
           rating,
