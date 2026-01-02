@@ -69,11 +69,9 @@ const MultiStepCheckout = () => {
     const fetchCartItems = async () => {
         try {
             const response = await apiCall('/cart/getCart');
-            console.log('Cart API Response:', response);
             
             if (response.items && response.items.length > 0) {
                 const formattedItems = response.items.map(item => {
-                    console.log('Processing item:', item);
                     return {
                         id: item.product?._id || item._id,
                         name: item.product?.name || item.name || 'Unknown Product',
@@ -89,10 +87,8 @@ const MultiStepCheckout = () => {
                         category: item.product?.category || item.category || 'General'
                     };
                 });
-                console.log('Formatted cart items:', formattedItems);
                 setCartItems(formattedItems);
             } else {
-                console.log('No items in cart');
                 setCartItems([]);
             }
         } catch (error) {
@@ -368,8 +364,6 @@ const MultiStepCheckout = () => {
         try {
             const token = localStorage.getItem("token");
 
-            console.log("Frontend cartItems:", cartItems);
-
             let res = await axios.post(
                 `${API_BASE_URL}/api/payment/post-checkout-session`,
                 { cartItems },
@@ -382,8 +376,6 @@ const MultiStepCheckout = () => {
             if (res.data.success) {
                 window.location.href = res.data.url;
             }
-
-            console.log("Response from backend:", res.data);
         } catch (error) {
             console.error("Error In stripe", error.response?.data || error.message);
         }
