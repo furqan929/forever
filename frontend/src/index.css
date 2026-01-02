@@ -1,6 +1,54 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400..700&family=Prata&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 @import "tailwindcss";
 
+/* Base font size for all devices */
+html {
+    font-size: 16px;
+}
+
+/* Mobile font size adjustments */
+@media (max-width: 640px) {
+    html {
+        font-size: 14px;
+    }
+    
+    body {
+        font-size: 0.875rem; /* 14px */
+        line-height: 1.5;
+    }
+    
+    h1 {
+        font-size: 1.5rem; /* 24px */
+    }
+    
+    h2 {
+        font-size: 1.25rem; /* 20px */
+    }
+    
+    h3 {
+        font-size: 1.125rem; /* 18px */
+    }
+    
+    p, span, div {
+        font-size: 0.875rem; /* 14px */
+    }
+    
+    button {
+        font-size: 0.875rem; /* 14px */
+    }
+    
+    input, textarea, select {
+        font-size: 1rem; /* 16px - prevents zoom on iOS */
+    }
+}
+
+/* Tablet font size */
+@media (min-width: 641px) and (max-width: 1024px) {
+    html {
+        font-size: 15px;
+    }
+}
+
 .sidebar-h {
     height: calc(100vh - 80px);
 }
