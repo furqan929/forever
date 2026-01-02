@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useCallback } from "react";
 import { Link, useParams } from "react-router-dom";
 import { FaHeart, FaShoppingCart, FaStar, FaTag } from "react-icons/fa";
-import Reviews from "./reviews";
+import Reviews from "./Reviews";
 import { useMyContext } from "../context/Context";
 import LoadingSpinner from "./LoadingSpinner";
 
