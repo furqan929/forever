@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { ShoppingCart, Truck, CreditCard, MapPin, Phone, Mail, User, Package, Shield, CheckCircle, Minus, Plus, X, Gift, Star, Clock, AlertCircle } from 'lucide-react';
 import axios from 'axios';
+import { API_BASE_URL } from '../config/api';
 
 const MultiStepCheckout = () => {
     const [currentStep, setCurrentStep] = useState(1);
@@ -31,9 +32,6 @@ const MultiStepCheckout = () => {
     const [notes, setNotes] = useState('');
     const [agreeToTerms, setAgreeToTerms] = useState(false);
     const [stripePayment, setStripePayment] = useState()
-
-    // API Base URL
-    const API_BASE_URL = 'http://localhost:3000/api';
 
     const getAuthToken = () => {
         return localStorage.getItem("token");
@@ -366,7 +364,7 @@ const MultiStepCheckout = () => {
             console.log("Frontend cartItems:", cartItems);
 
             let res = await axios.post(
-                "http://localhost:3000/api/payment/post-checkout-session",
+                `${API_BASE_URL}/api/payment/post-checkout-session`,
                 { cartItems },
                 {
                     headers: {

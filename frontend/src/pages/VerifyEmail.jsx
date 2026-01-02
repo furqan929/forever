@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import { API_BASE_URL } from '../config/api';
 
 const VerifyEmail = () => {
   const [otp, setOtp] = useState('');
@@ -35,7 +36,7 @@ const VerifyEmail = () => {
 
     setLoading(true);
     try {
-      const res = await axios.post('http://localhost:3000/api/auth/verify-otp', {
+      const res = await axios.post(`${API_BASE_URL}/api/auth/verify-otp`, {
         email: pendingUser.email,
         otp
       });
@@ -58,7 +59,7 @@ const VerifyEmail = () => {
   const handleResend = async () => {
     setResendLoading(true);
     try {
-      const res = await axios.post('http://localhost:3000/api/auth/resend-otp', {
+      const res = await axios.post(`${API_BASE_URL}/api/auth/resend-otp`, {
         email: pendingUser.email
       });
 

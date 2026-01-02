@@ -3,6 +3,7 @@ import { ArrowLeft, Camera, LogOut, Package, Heart, ShoppingCart, Award, Mail, C
 import { Link, useNavigate } from 'react-router-dom';
 import { useMyContext } from '../context/Context';
 import axios from 'axios';
+import { API_BASE_URL } from '../config/api';
 
 const Profile = () => {
     const { cartItems, wishlist } = useMyContext()
@@ -25,7 +26,7 @@ const Profile = () => {
                 return;
             }
 
-            const res = await axios.get("http://localhost:3000/api/orders/my-orders", {
+            const res = await axios.get(`${API_BASE_URL}/api/orders/my-orders`, {
                 headers: { Authorization: `Bearer ${token}` }
             });
 
@@ -69,7 +70,7 @@ const Profile = () => {
             const token = localStorage.getItem("token");
 
             const res = await axios.put(
-                "http://localhost:3000/api/user/update-name",
+                `${API_BASE_URL}/api/user/update-name`,
                 { name: newName },
                 { headers: { Authorization: `Bearer ${token}` } }
             );

@@ -8,6 +8,7 @@ import { FaEdit } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 import { FaArrowAltCircleDown } from "react-icons/fa";
 import { IoMdInformationCircleOutline } from "react-icons/io";
+import { API_BASE_URL } from '../config/api';
 
 const EditProduct = ({ product, onSave, onCancel }) => {
   const [formData, setFormData] = useState({
@@ -235,7 +236,7 @@ const Admin = () => {
     }
 
     try {
-      const res = await fetch("http://localhost:3000/api/admin/all-users", {
+      const res = await fetch(`${API_BASE_URL}/api/admin/all-users`, {
         headers: {
           Authorization: `Bearer ${token}`
         }
@@ -256,7 +257,7 @@ const Admin = () => {
     }
 
     try {
-      const res = await axios.get("http://localhost:3000/api/admin2/dashboard", {
+      const res = await axios.get(`${API_BASE_URL}/api/admin2/dashboard`, {
         headers: {
           Authorization: `Bearer ${token}`
         }
@@ -275,7 +276,7 @@ const Admin = () => {
       return
     }
     try {
-      const res = await axios.get("http://localhost:3000/api/admin/orders", {
+      const res = await axios.get(`${API_BASE_URL}/api/admin/orders`, {
         headers: {
           Authorization: `Bearer ${token}`
         }
@@ -291,7 +292,7 @@ const Admin = () => {
     try {
       const queryString = new URLSearchParams(currentFilters).toString();
       const response = await axios.get(
-        `http://localhost:3000/api/products/products?${queryString}`
+        `${API_BASE_URL}/api/products/products?${queryString}`
       );
       setProducts(response.data.data);
       setPagination(response.data.pagination);
@@ -304,7 +305,7 @@ const Admin = () => {
     try {
       const token = localStorage.getItem("token");
 
-      await axios.delete(`http://localhost:3000/api/products/${id}`, {
+      await axios.delete(`${API_BASE_URL}/api/products/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -329,7 +330,7 @@ const Admin = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await axios.put(
-        `http://localhost:3000/api/products/${productId}`,
+        `${API_BASE_URL}/api/products/${productId}`,
         updatedData,
         {
           headers: {
@@ -363,7 +364,7 @@ const Admin = () => {
   const deleteUser = async (userId) => {
     try {
       const token = localStorage.getItem("token");
-      await axios.delete(`http://localhost:3000/api/admin/users/${userId}`, {
+      await axios.delete(`${API_BASE_URL}/api/admin/users/${userId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -424,7 +425,7 @@ const Admin = () => {
   const handleCreate = async () => {
     try {
       let token = localStorage.getItem("token")
-      let res = await axios.post("http://localhost:3000/api/admin2/createProducts", createProduct, {
+      let res = await axios.post(`${API_BASE_URL}/api/admin2/createProducts`, createProduct, {
         headers: {
           Authorization: `Bearer ${token}`
         }
@@ -447,7 +448,7 @@ const Admin = () => {
       const token = localStorage.getItem("token");
 
       const res = await axios.put(
-        `http://localhost:3000/api/orders/${orderId}/status`,
+        `${API_BASE_URL}/api/orders/${orderId}/status`,
         {
           status: newStatus,
           note: "Updated by admin panel"

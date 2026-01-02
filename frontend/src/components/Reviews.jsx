@@ -1,83 +1,42 @@
-// import axios from 'axios'
-// import React, { useState } from 'react'
-// import { toast, ToastContainer } from 'react-toastify'
-// import { FaStar } from "react-icons/fa";
-
-// const Reviews = ({ id,getReview }) => {
-//   let [comment, setComment] = useState("")
-//   let [rating, setRating] = useState(0);
-
-//   let Review = async () => {
-//     let token = localStorage.getItem("token");
-
-//     if (!token) {
-//       toast("Please Login First.");
-//       return;
-//     }
-
-//     try {
-//       let res = await axios.post(
-//         `http://localhost:3000/api/products/${id}/review`,
-//         {
-//           comment,
-//           rating,
-//         },
-//         {
-//           headers: {
-//             Authorization: `Bearer ${token}`,
-//           },
-//         }
-//       );
-//       setComment("");
-//       setRating(0);
-//       getReview()
-//     } catch (error) {
-//       // console.error(error);
-//       toast(error.response.data.message);
-//     }
-//   };
-
-//   return (
-//     <div>
-//       <div className='w-full min-h-30 border-1'>
-//         <div className='w-full h-14 border-1 flex justify-around items-center'>
-//           <input
-//             type="text"
-//             value={comment}
-//             onChange={(e) => setComment(e.target.value)}
-//             className='w-[70%] h-13 border-1 rounded-lg p-5 active:scale-99 transition-all'
-//             name="comment"
-//             placeholder='Write A Review...'
-//           />
-//           <button
-//             onClick={Review}
-//             className='w-45 h-13 bg-green-500 text-amber-50 rounded-xl cursor-pointer text-lg shadow-lg active:scale-95 transition-all'
-//           >
-//             Reviews
-//           </button>
-//         </div>
-
-//         {/* Dynamic stars with map */}
-//         <div className='w-full h-15 border-1 flex justify-center items-center gap-2 mt-2'>
-//           {[...Array(5)].map((_, index) => {
-//             let starValue = index + 1;
-//             return (
-//               <FaStar
-//                 key={index}
-//                 onClick={() => setRating(starValue)}
-//                 className={`w-6 h-6 cursor-pointer transition-all ${starValue <= rating ? "text-amber-400" : "text-gray-400"
-//                   }`}
-//               />
-//             );
-//           })}
-//         </div>
-//       </div>
-//     </div>
-//   )
-// }
-
-// export default Reviews;
 import axios from 'axios'
+import React, { useState } from 'react'
+import { toast } from 'react-toastify'
+import { FaStar } from "react-icons/fa";
+import { API_BASE_URL } from '../config/api';
+
+const Reviews = ({ id, getReview }) => {
+  let [comment, setComment] = useState("")
+  let [rating, setRating] = useState(0);
+
+  let Review = async () => {
+    let token = localStorage.getItem("token");
+
+    if (!token) {
+      toast("Please Login First.");
+      return;
+    }
+
+    try {
+      let res = await axios.post(
+        `${API_BASE_URL}/api/products/${id}/review`,
+        {
+          comment: comment.trim(),
+          rating,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      setComment("");
+      setRating(0);
+      getReview()
+      toast.success("Review added successfully!");
+    } catch (error) {
+      toast(error.response?.data?.message || "Failed to add review");
+    }
+  };
 import React, { useState } from 'react'
 import { toast, ToastContainer } from 'react-toastify'
 import { FaStar, FaPaperPlane, FaEdit } from "react-icons/fa";

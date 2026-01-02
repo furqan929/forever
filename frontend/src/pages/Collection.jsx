@@ -17,6 +17,7 @@ import {
 import { useMyContext } from "../context/Context";
 import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
+import { API_BASE_URL } from "../config/api";
 
 const Products = () => {
   const { addCart, addToWishlist, wishlist } = useMyContext();
@@ -53,7 +54,7 @@ const Products = () => {
   // Fetch categories
   const fetchCategories = async () => {
     try {
-      const res = await axios.get("http://localhost:3000/api/products/categories");
+      const res = await axios.get(`${API_BASE_URL}/api/products/categories`);
       setCategories(res.data.categories);
     } catch (err) {
       console.error("Error fetching categories:", err);
@@ -63,7 +64,7 @@ const Products = () => {
   // Fetch brands
   const fetchBrand = async () => {
     try {
-      const res = await axios.get("http://localhost:3000/api/products/brand");
+      const res = await axios.get(`${API_BASE_URL}/api/products/brand`);
       setBrand(res.data.brand);
     } catch (err) {
       console.error("Error fetching brands:", err);
@@ -75,7 +76,7 @@ const Products = () => {
     try {
       const queryString = new URLSearchParams(currentFilters).toString();
       const response = await axios.get(
-        `http://localhost:3000/api/products/products?${queryString}`
+        `${API_BASE_URL}/api/products/products?${queryString}`
       );
       setCart(response.data.data);
       setPagination(response.data.pagination);

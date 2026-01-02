@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { MdDelete } from "react-icons/md";
 import { toast } from "react-toastify";
+import { API_BASE_URL } from "../config/api";
 
 const WishList = () => {
   const [wishlist, setWishlist] = useState([]);
@@ -9,7 +10,7 @@ const WishList = () => {
   const getWishlist = async () => {
     try {
       let token = localStorage.getItem("token");
-      let res = await axios.get("http://localhost:3000/api/wishlist", {
+      let res = await axios.get(`${API_BASE_URL}/api/wishlist`, {
         headers: { Authorization: `Bearer ${token}` },
       });
 
@@ -24,7 +25,7 @@ const WishList = () => {
     try {
       let token = localStorage.getItem("token");
 
-      await axios.delete(`http://localhost:3000/api/wishlist/delete/${id}`, {
+      await axios.delete(`${API_BASE_URL}/api/wishlist/delete/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
 

@@ -10,6 +10,7 @@ import { useMyContext } from "../context/Context";
 import { assets } from "../assets/assets";
 import { FaBox } from "react-icons/fa";
 import { IoIosSettings, IoMdExit } from "react-icons/io";
+import { API_BASE_URL } from "../config/api";
 
 const Navbar = () => {
   const [mobileMenuVisible, setMobileMenuVisible] = useState(false);
@@ -27,7 +28,7 @@ const Navbar = () => {
     if (!token) return toast.error("Please login first");
 
     try {
-      await axios.delete(`http://localhost:3000/api/cart/deleteCart/${id}`, {
+      await axios.delete(`${API_BASE_URL}/api/cart/deleteCart/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       toast.success("Item removed from cart");
@@ -61,7 +62,7 @@ const Navbar = () => {
     try {
       const token = localStorage.getItem("token");
       if (token) {
-        await axios.post('http://localhost:3000/api/auth/logout', {}, {
+        await axios.post(`${API_BASE_URL}/api/auth/logout`, {}, {
           headers: { Authorization: `Bearer ${token}` }
         });
       }

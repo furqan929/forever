@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
+import { API_BASE_URL } from "../config/api";
 
 const MyContext = createContext();
 
@@ -16,7 +17,7 @@ export const MyProvider = ({ children }) => {
   const getReview = async (id) => {
     try {
       let res = await axios.get(
-        `http://localhost:3000/api/products/${id}/reviews`
+        `${API_BASE_URL}/api/products/${id}/reviews`
       );
       setReviews(res.data);
     } catch (err) {
@@ -28,7 +29,7 @@ export const MyProvider = ({ children }) => {
   const getProduct = async (id) => {
     try {
       let res = await axios.get(
-        `http://localhost:3000/api/products/products/${id}`
+        `${API_BASE_URL}/api/products/products/${id}`
       );
       setProduct(res.data);
     } catch (err) {
@@ -46,7 +47,7 @@ export const MyProvider = ({ children }) => {
       }
 
       await axios.post(
-        "http://localhost:3000/api/cart/addCart",
+        `${API_BASE_URL}/api/cart/addCart`,
         { productId, quantity: 1 },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -69,7 +70,7 @@ export const MyProvider = ({ children }) => {
 
       // ✅ Add item
           let res = await axios.post(
-          "http://localhost:3000/api/wishlist/add",
+          `${API_BASE_URL}/api/wishlist/add`,
           { productId },
           { headers: { Authorization: `Bearer ${token}` } }
         );
@@ -92,7 +93,7 @@ export const MyProvider = ({ children }) => {
     if (!token) return;
 
     try {
-      let res = await axios.get("http://localhost:3000/api/wishlist/", {
+      let res = await axios.get(`${API_BASE_URL}/api/wishlist/`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       
@@ -110,7 +111,7 @@ export const MyProvider = ({ children }) => {
       let token = localStorage.getItem("token");
       if (!token) return;
 
-      let res = await axios.get("http://localhost:3000/api/cart/getCart", {
+      let res = await axios.get(`${API_BASE_URL}/api/cart/getCart`, {
         headers: { Authorization: `Bearer ${token}` },
       });
 
@@ -129,7 +130,7 @@ export const MyProvider = ({ children }) => {
 
     try {
       await axios.post(
-        "http://localhost:3000/api/cart/addCart",
+        `${API_BASE_URL}/api/cart/addCart`,
         { productId, quantity: change },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -144,7 +145,7 @@ export const MyProvider = ({ children }) => {
   const deleteWishlist = async (id) => {
     try {
       let token = localStorage.getItem("token");
-      await axios.delete(`http://localhost:3000/api/wishlist/delete/${id}`, {
+      await axios.delete(`${API_BASE_URL}/api/wishlist/delete/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       

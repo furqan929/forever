@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { MdCancel, MdRefresh, MdInfo } from "react-icons/md";
+import { API_BASE_URL } from '../config/api';
 
 // ✅ Order Details Modal Component
 const OrderDetailsModal = ({ order, isOpen, onClose }) => {
@@ -129,7 +130,7 @@ const MyOrder = () => {
         return
       }
 
-      const res = await axios.get("http://localhost:3000/api/orders/my-orders", {
+      const res = await axios.get(`${API_BASE_URL}/api/orders/my-orders`, {
         headers: {
           Authorization: `Bearer ${token}`
         }
