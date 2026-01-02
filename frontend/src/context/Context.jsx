@@ -12,6 +12,8 @@ export const MyProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
   const [cartItems, setCartItems] = useState([]);
   const [pageLoading, setPageLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   // ✅ Fetch Reviews
   const getReview = async (id) => {
@@ -19,14 +21,17 @@ export const MyProvider = ({ children }) => {
       let res = await axios.get(
         `${API_BASE_URL}/api/products/${id}/reviews`
       );
-      setReviews(res.data);
+      setReviews(res.data || []);
     } catch (err) {
       console.error(err);
+      setReviews([]);
     }
   };
 
   // ✅ Fetch Single Product
   const getProduct = async (id) => {
+    setLoading(true);
+    setError(null);
     try {
       let res = await axios.get(
         `${API_BASE_URL}/api/products/products/${id}`
@@ -34,6 +39,10 @@ export const MyProvider = ({ children }) => {
       setProduct(res.data);
     } catch (err) {
       console.error(err);
+      setError("Failed to load product");
+      setProduct(null);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -187,6 +196,8 @@ export const MyProvider = ({ children }) => {
         handleQuantityChange,
         pageLoading,
         deleteWishlist,
+        loading,
+        error,
       }}
     >
       {children}

@@ -228,7 +228,11 @@ const SingleProduct = () => {
             </div>
 
             <div className="space-y-3 sm:space-y-4">
-              {reviews.map((review, index) => (
+              {reviews.map((review, index) => {
+                // Safety check for review data
+                if (!review || !review.user) return null;
+                
+                return (
                 <div
                   key={review._id || index}
                   className="border border-gray-100 rounded-lg sm:rounded-xl p-3 sm:p-4 hover:shadow-md transition-shadow duration-200"
@@ -236,27 +240,27 @@ const SingleProduct = () => {
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-2 sm:mb-3 gap-2 sm:gap-0">
                     <div className="flex items-center gap-2 sm:gap-3">
                       <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white font-semibold text-xs sm:text-sm">
-                        {review.user.name.charAt(0).toUpperCase()}
+                        {review.user?.name?.charAt(0)?.toUpperCase() || 'U'}
                       </div>
                       <div>
                         <h3 className="font-semibold text-gray-800 text-sm sm:text-base">
-                          {review.user.name}
+                          {review.user?.name || 'Anonymous'}
                         </h3>
                         <span className="text-xs sm:text-sm text-gray-500">
-                          {new Date(review.createdAt).toLocaleDateString()}
+                          {review.createdAt ? new Date(review.createdAt).toLocaleDateString() : 'N/A'}
                         </span>
                       </div>
                     </div>
                     <div className="flex items-center gap-1 bg-yellow-50 px-2 sm:px-3 py-1 rounded-full self-start sm:self-auto">
                       <FaStar className="text-yellow-400 w-3 h-3 sm:w-4 sm:h-4 fill-current" />
                       <span className="font-semibold text-yellow-700 text-sm sm:text-base">
-                        {review.rating}
+                        {review.rating || 0}
                       </span>
                     </div>
                   </div>
-                  <p className="text-gray-700 leading-relaxed text-sm sm:text-base">{review.comment}</p>
+                  <p className="text-gray-700 leading-relaxed text-sm sm:text-base">{review.comment || ''}</p>
                 </div>
-              ))}
+              )})}
             </div>
           </div>
         ) : (
