@@ -18,6 +18,7 @@ import MyOrder from './pages/MyOrder';
 import Admin from './pages/Admin';
 import Profile from './pages/Profile';
 import Settings from './components/Settings';
+import PaymentSuccess from './pages/PaymentSuccess';
 import ProtectedRoute from './components/ProtectedRoute';
 import AuthRoute from './components/AuthRoute';
 import { ToastContainer } from 'react-toastify';
@@ -51,6 +52,7 @@ const App = () => {
         <Route path="/product/:id" element={<SingleProduct />} />
         <Route path="/wishlist" element={<WishList />} />
         <Route path='/CheckOut' element={<CheckOut />} />
+        <Route path='/payment-success' element={<PaymentSuccess />} />
         <Route path='/my-orders' element={<MyOrder />} />
         <Route path='/profile' element={<Profile />} />
         <Route path="/settings" element={<Settings />} />

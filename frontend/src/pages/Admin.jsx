@@ -1008,10 +1008,10 @@ const Admin = () => {
                             {ele.brand}
                           </p>
                           <p className="text-lg font-bold text-gray-900">
-                            ${ele.discountedPrice}{" "}
+                            Rs. {ele.discountedPrice}{" "}
                             {ele.price > ele.discountedPrice && (
                               <span className="text-sm text-gray-400 line-through ml-2">
-                                ${ele.price}
+                                Rs. {ele.price}
                               </span>
                             )}
                           </p>

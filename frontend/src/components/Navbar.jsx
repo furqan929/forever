@@ -199,7 +199,7 @@ const Navbar = () => {
                                         {item.name}
                                       </h4>
                                       <p className="text-blue-600 font-bold text-sm">
-                                        ${item.discountedPrice || item.price}
+                                        Rs. {item.discountedPrice || item.price}
                                       </p>
                                     </div>
                                     <button
@@ -526,7 +526,7 @@ const Navbar = () => {
                 <div>
                   <h2 className="text-2xl font-bold">Your Cart</h2>
                   <p className="text-blue-100 text-sm font-medium">
-                    {cartItems.length} item{cartItems.length !== 1 ? 's' : ''} • ${cartTotal.toFixed(2)}
+                    {cartItems.length} item{cartItems.length !== 1 ? 's' : ''} • Rs. {cartTotal.toFixed(2)}
                   </p>
                 </div>
               </div>
@@ -571,7 +571,7 @@ const Navbar = () => {
                           {item.product.name}
                         </h3>
                         <p className="text-blue-600 font-bold text-lg mb-3">
-                          ${item.product.discountedPrice}
+                          Rs. {item.product.discountedPrice}
                         </p>
 
                         <div className="flex items-center justify-between">
@@ -613,7 +613,7 @@ const Navbar = () => {
                 <div className="flex justify-between items-center text-xl">
                   <span className="font-bold text-gray-900">Total Amount:</span>
                   <span className="font-bold text-transparent bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text">
-                    ${cartTotal.toFixed(2)}
+                    Rs. {cartTotal.toFixed(2)}
                   </span>
                 </div>
                 <p className="text-sm text-gray-500 text-center">

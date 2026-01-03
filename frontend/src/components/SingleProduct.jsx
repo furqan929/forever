@@ -147,17 +147,17 @@ const SingleProduct = () => {
               <div className="space-y-1 sm:space-y-2">
                 <div className="flex items-center gap-2 sm:gap-3 lg:gap-4">
                   <span className="text-2xl sm:text-3xl lg:text-4xl font-bold text-green-600">
-                    ${product.discountedPrice}
+                    Rs. {product.discountedPrice}
                   </span>
                   {product.discountedPrice < product.price && (
                     <span className="text-lg sm:text-xl lg:text-2xl text-gray-500 line-through">
-                      ${product.price}
+                      Rs. {product.price}
                     </span>
                   )}
                 </div>
                 {discountPercentage > 0 && (
                   <p className="text-green-600 font-semibold text-sm sm:text-base">
-                    You save ${(product.price - product.discountedPrice).toFixed(2)}
+                    You save Rs. {(product.price - product.discountedPrice).toFixed(2)}
                   </p>
                 )}
               </div>

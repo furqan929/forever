@@ -13,12 +13,12 @@ exports.paymentMethod = async (req, res) => {
         // Create line items for Stripe
         const lineItems = cartItems.map(item => ({
             price_data: {
-                currency: "usd",
+                currency: "pkr",
                 product_data: {
                     name: item.name,
                     images: item.image ? [item.image] : [],
                 },
-                unit_amount: Math.round(item.price * 100), // Stripe expects amount in cents
+                unit_amount: Math.round(item.price * 100), // Stripe expects amount in paisa for PKR
             },
             quantity: item.quantity || 1,
         }));
@@ -28,8 +28,8 @@ exports.paymentMethod = async (req, res) => {
             payment_method_types: ["card"],
             mode: "payment",
             line_items: lineItems,
-            success_url: "http://localhost:3000/success",
-            cancel_url: "http://localhost:3000/cancel",
+            success_url: `${process.env.FRONTEND_URL}/payment-success?session_id={CHECKOUT_SESSION_ID}`,
+            cancel_url: `${process.env.FRONTEND_URL}/CheckOut`,
         });
 
         res.status(200).json({

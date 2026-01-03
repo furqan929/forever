@@ -90,7 +90,7 @@ const OrderDetailsModal = ({ order, isOpen, onClose }) => {
                     </span>
                   </div>
                   <span className="font-semibold text-gray-700">
-                    ${item.price?.toFixed(2) || "0.00"}
+                    Rs. {item.price?.toFixed(2) || "0.00"}
                   </span>
                 </li>
               ))}
