@@ -28,8 +28,8 @@ exports.paymentMethod = async (req, res) => {
             payment_method_types: ["card"],
             mode: "payment",
             line_items: lineItems,
-            success_url: `${process.env.FRONTEND_URL}/success`,
-            cancel_url: `${process.env.FRONTEND_URL}/cancel`,
+            success_url: `${process.env.FRONTEND_URL || 'https://forever-57jk.vercel.app'}/success`,
+            cancel_url: `${process.env.FRONTEND_URL || 'https://forever-57jk.vercel.app'}/cancel`,
         });
 
         res.status(200).json({
