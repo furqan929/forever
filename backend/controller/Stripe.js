@@ -11,17 +11,26 @@ exports.paymentMethod = async (req, res) => {
         }
 
         // Create line items for Stripe
-        const lineItems = cartItems.map(item => ({
-            price_data: {
-                currency: "pkr",
-                product_data: {
-                    name: item.name,
-                    images: item.image ? [item.image] : [],
+        const lineItems = cartItems.map(item => {
+            // Handle both nested product structure and direct item structure
+            const product = item.product || item;
+            const price = product.discountedPrice || product.price || 0;
+            const name = product.name || 'Product';
+            const image = product.image || '';
+            const quantity = item.quantity || 1;
+
+            return {
+                price_data: {
+                    currency: "pkr",
+                    product_data: {
+                        name: name,
+                        images: image ? [image] : [],
+                    },
+                    unit_amount: Math.round(price * 100), // Stripe expects amount in paisa for PKR
                 },
-                unit_amount: Math.round(item.price * 100), // Stripe expects amount in paisa for PKR
-            },
-            quantity: item.quantity || 1,
-        }));
+                quantity: quantity,
+            };
+        });
 
         // Create Stripe Checkout session
         const session = await stripe.checkout.sessions.create({
@@ -39,6 +48,10 @@ exports.paymentMethod = async (req, res) => {
         });
     } catch (error) {
         console.error("Error in payment method:", error);
-        res.status(500).json({ message: error.message });
+        res.status(500).json({ 
+            success: false,
+            message: error.message,
+            error: error.toString()
+        });
     }
 };
