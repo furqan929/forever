@@ -28,8 +28,8 @@ exports.paymentMethod = async (req, res) => {
             payment_method_types: ["card"],
             mode: "payment",
             line_items: lineItems,
-            success_url: "http://localhost:3000/success",
-            cancel_url: "http://localhost:3000/cancel",
+            success_url: `${process.env.FRONTEND_URL}/success`,
+            cancel_url: `${process.env.FRONTEND_URL}/cancel`,
         });
 
         res.status(200).json({
