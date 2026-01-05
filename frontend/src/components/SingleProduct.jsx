@@ -50,15 +50,6 @@ const SingleProduct = () => {
     }
   }, [product?._id, addToWishlist]);
 
-  // Loading and error states
-  if (loading) {
-    return (
-      <div className="flex justify-center items-center min-h-96 px-4">
-        <LoadingSpinner />
-        <span className="ml-3 text-gray-600 text-sm sm:text-base">Loading product details...</span>
-      </div>
-    );
-  }
 
   if (error) {
     return (
