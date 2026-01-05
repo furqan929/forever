@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useCallback } from "react";
+import React, { useEffect, useMemo, useCallback } from "react";
 import { Link, useParams } from "react-router-dom";
 import { FaHeart, FaShoppingCart, FaStar, FaTag } from "react-icons/fa";
 import Reviews from "./Reviews";
