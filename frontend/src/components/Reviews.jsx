@@ -1,6 +1,6 @@
 import axios from 'axios'
 import React, { useState } from 'react'
-import { toast } from 'react-toastify'
+import { toast } from 'sonner'
 import { FaStar, FaPaperPlane, FaEdit } from "react-icons/fa";
 import { API_BASE_URL } from '../config/api';
 

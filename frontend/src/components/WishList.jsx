@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { MdDelete } from "react-icons/md";
-import { toast } from "react-toastify";
+import { toast } from "sonner";
 import { API_BASE_URL } from "../config/api";
 
 const WishList = () => {

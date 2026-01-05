@@ -20,7 +20,7 @@ import Profile from './pages/Profile';
 import Settings from './components/Settings';
 import ProtectedRoute from './components/ProtectedRoute';
 import AuthRoute from './components/AuthRoute';
-import { ToastContainer } from 'react-toastify';
+import { Toaster } from 'sonner';
 
 const App = () => {
   const location = useLocation();
@@ -59,15 +59,7 @@ const App = () => {
         <Route path='/admin' element={<ProtectedRoute adminOnly={true}><Admin /></ProtectedRoute>} />
       </Routes>
 
-      <ToastContainer
-        position="top-right"
-        autoClose={1500}
-        closeOnClick
-        draggable
-        pauseOnHover
-        theme="light"
-        toastClassName="rounded-lg shadow-lg"
-      />
+      <Toaster position="top-right" richColors closeButton />
     </div>
   );
 }

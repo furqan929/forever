@@ -15,7 +15,7 @@ import {
   FaStar,
 } from "react-icons/fa";
 import { useMyContext } from "../context/Context";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "sonner";
 import axios from "axios";
 import { API_BASE_URL } from "../config/api";
 
@@ -115,10 +115,7 @@ const Products = () => {
 
   const handleAddToCart = (product) => {
     addCart(product._id);
-    toast.success(`Added ${product.name} to cart!`, {
-      position: "top-right",
-      className: "bg-green-50 text-green-800",
-    });
+    toast.success(`Added ${product.name} to cart!`);
   };
 
   const handleAddToWishlist = (productId, productName) => {
@@ -127,13 +124,7 @@ const Products = () => {
     toast.info(
       isAdding
         ? `Added ${productName} to wishlist!`
-        : `Removed ${productName} from wishlist!`,
-      {
-        position: "bottom-right",
-        className: isAdding
-          ? "bg-purple-50 text-purple-800"
-          : "bg-gray-50 text-gray-800",
-      }
+        : `Removed ${productName} from wishlist!`
     );
   };
 

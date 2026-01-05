@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { createContext, useContext, useEffect, useState } from "react";
-import { toast } from "react-toastify";
+import { toast } from "sonner";
 import { API_BASE_URL } from "../config/api";
 
 const MyContext = createContext();

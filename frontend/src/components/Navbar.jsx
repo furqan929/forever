@@ -5,7 +5,7 @@ import { FaUserCircle, FaShoppingCart, FaPlus, FaMinus, FaChevronDown } from "re
 import { Heart, Menu, X, Home, Grid, Info, ShoppingBag, User } from "lucide-react";
 import { MdDelete } from "react-icons/md";
 import axios from "axios";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "sonner";
 import { useMyContext } from "../context/Context";
 import { assets } from "../assets/assets";
 import { FaBox } from "react-icons/fa";

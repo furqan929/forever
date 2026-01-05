@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { toast } from 'react-toastify';
+import { toast } from 'sonner';
 import { API_BASE_URL } from '../config/api';
 
 const Signup = () => {

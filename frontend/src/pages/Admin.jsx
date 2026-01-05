@@ -1,7 +1,6 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
-import { toast, ToastContainer } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
+import { toast } from 'sonner'
 import { GrOverview } from "react-icons/gr";
 import Collection from './Collection';
 import { FaEdit } from "react-icons/fa";
