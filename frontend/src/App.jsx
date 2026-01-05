@@ -18,8 +18,6 @@ import MyOrder from './pages/MyOrder';
 import Admin from './pages/Admin';
 import Profile from './pages/Profile';
 import Settings from './components/Settings';
-import StripeSuccess from './pages/StripeSuccess';
-import StripeCancel from './pages/StripeCancel';
 import ProtectedRoute from './components/ProtectedRoute';
 import AuthRoute from './components/AuthRoute';
 import { Toaster } from 'sonner';
@@ -53,8 +51,6 @@ const App = () => {
         <Route path="/product/:id" element={<SingleProduct />} />
         <Route path="/wishlist" element={<WishList />} />
         <Route path='/CheckOut' element={<CheckOut />} />
-        <Route path='/success' element={<StripeSuccess />} />
-        <Route path='/cancel' element={<StripeCancel />} />
         <Route path='/my-orders' element={<MyOrder />} />
         <Route path='/profile' element={<Profile />} />
         <Route path="/settings" element={<Settings />} />
