@@ -61,6 +61,7 @@ const Profile = () => {
     };
 
     useEffect(() => {
+        document.title = "My Profile - Forever";
         loadUser();
     }, []);
 

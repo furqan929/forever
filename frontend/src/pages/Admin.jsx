@@ -399,6 +399,7 @@ const Admin = () => {
   const roles = ['all', ...new Set(users.map(user => user.role).filter(Boolean))]
 
   useEffect(() => {
+    document.title = "Admin Dashboard - Forever";
     const loadData = async () => {
       setLoading(true)
       await Promise.all([fetchUsers(), fetchOrders(), fetchProducts(filters)])

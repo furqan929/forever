@@ -38,6 +38,7 @@ const WishList = () => {
   };
 
   useEffect(() => {
+    document.title = "My Wishlist - Forever";
     getWishlist();
   }, []);
 

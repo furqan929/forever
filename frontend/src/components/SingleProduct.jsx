@@ -26,9 +26,15 @@ const SingleProduct = () => {
     }
   }, [id, getProduct, getReview]);
 
+  useEffect(() => {
+    if (product?.name) {
+      document.title = `${product.name} - Forever`;
+    }
+  }, [product?.name]);
+
   // Memoized values for better performance
   const isWishlisted = useMemo(() =>
-    wishlist.includes(product?._id),
+    Array.isArray(wishlist) && wishlist.some(item => item._id === product?._id),
     [wishlist, product?._id]
   );
 
@@ -97,11 +103,20 @@ const SingleProduct = () => {
                   className="w-full h-48 xs:h-56 sm:h-64 md:h-72 lg:h-80 xl:h-96 object-cover rounded-lg sm:rounded-xl shadow-md transition-transform duration-300 group-hover:scale-105"
                   loading="eager"
                 />
-                {discountPercentage > 0 && (
-                  <span className="absolute top-2 left-2 sm:top-3 sm:left-3 bg-red-500 text-white px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-semibold flex items-center">
-                    <FaTag className="mr-1 text-xs sm:text-sm" /> {discountPercentage}% OFF
-                  </span>
-                )}
+              </div>
+              
+              {/* Additional 3 Images Grid */}
+              <div className="grid grid-cols-3 gap-2 sm:gap-3">
+                {[1, 2, 3].map((index) => (
+                  <div key={index} className="relative group">
+                    <img
+                      src={product.image}
+                      alt={`${product.name} view ${index + 1}`}
+                      className="w-full h-20 xs:h-24 sm:h-28 md:h-32 object-cover rounded-lg shadow-sm transition-transform duration-300 group-hover:scale-105"
+                      loading="lazy"
+                    />
+                  </div>
+                ))}
               </div>
             </div>
 

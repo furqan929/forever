@@ -150,6 +150,7 @@ const MyOrder = () => {
   }
 
   useEffect(() => {
+    document.title = "My Orders - Forever";
     fetchOrders()
   }, [])
 

@@ -44,6 +44,7 @@ const Products = () => {
 
   // Scroll detection
   useEffect(() => {
+    document.title = "Shop Products - Forever";
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 100);
     };
@@ -325,21 +326,13 @@ const Products = () => {
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
-          {discountPercentage > 0 && (
-            <div className="absolute top-4 left-4">
-              <div className="bg-gradient-to-r from-red-500 to-pink-500 text-white px-3 py-1.5 rounded-full text-xs font-bold shadow-lg">
-                -{discountPercentage}% OFF
-              </div>
-            </div>
-          )}
-
           <div className="absolute top-4 right-4 flex flex-col gap-2 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-4 group-hover:translate-x-0">
             <button
               onClick={() => handleAddToWishlist(product._id, product.name)}
               className="w-10 h-10 bg-white/95 backdrop-blur-sm rounded-full shadow-lg hover:scale-110 transition-all flex items-center justify-center"
             >
               <FaHeart
-                className={`text-base ${Array.isArray(wishlist) &&  wishlist.includes(product._id) ? "text-red-500" : "text-gray-600"}`}
+                className={`text-base ${Array.isArray(wishlist) && wishlist.some(item => item._id === product._id) ? "text-red-500 fill-current" : "text-gray-600"}`}
               />
             </button>
 
@@ -397,14 +390,6 @@ const Products = () => {
               className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
             />
             <div className="absolute inset-0 bg-gradient-to-r from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-
-            {discountPercentage > 0 && (
-              <div className="absolute top-4 left-4">
-                <div className="bg-gradient-to-r from-red-500 to-pink-500 text-white px-3 py-1.5 rounded-full text-xs font-bold shadow-lg">
-                  -{discountPercentage}% OFF
-                </div>
-              </div>
-            )}
           </div>
 
           <div className="flex-1 p-6 flex flex-col">
@@ -438,8 +423,7 @@ const Products = () => {
                   className="w-11 h-11 bg-gray-100 rounded-xl hover:bg-gray-200 transition-all flex items-center justify-center shadow-sm hover:shadow"
                 >
                   <FaHeart
-                    className={`text-base ${isWishlisted ? "text-red-500" : "text-gray-600"
-                      }`}
+                    className={`text-base ${Array.isArray(wishlist) && wishlist.some(item => item._id === product._id) ? "text-red-500 fill-current" : "text-gray-600"}`}
                   />
                 </button>
                 <Link to={`/product/${product._id}`}>

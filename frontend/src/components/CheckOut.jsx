@@ -188,6 +188,7 @@ const MultiStepCheckout = () => {
     };
 
     useEffect(() => {
+        document.title = "Checkout - Forever";
         fetchCartItems();
 
         fetchShippingOptions();
