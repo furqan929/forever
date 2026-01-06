@@ -3,11 +3,14 @@ import axios from "axios";
 import { MdDelete } from "react-icons/md";
 import { toast } from "sonner";
 import { API_BASE_URL } from "../config/api";
+import LoadingSpinner from "./LoadingSpinner";
 
 const WishList = () => {
   const [wishlist, setWishlist] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const getWishlist = async () => {
+    setLoading(true);
     try {
       let token = localStorage.getItem("token");
       let res = await axios.get(`${API_BASE_URL}/api/wishlist`, {
@@ -18,6 +21,8 @@ const WishList = () => {
     } catch (err) {
       console.error(err);
       toast.error("Failed to load wishlist");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -46,7 +51,9 @@ const WishList = () => {
     <div className="max-w-5xl mx-auto p-6">
       <h1 className="text-3xl font-bold mb-6">My Wishlist</h1>
 
-      {wishlist.length > 0 ? (
+      {loading ? (
+        <LoadingSpinner message="Loading wishlist..." />
+      ) : wishlist.length > 0 ? (
         <div className="space-y-4">
           {wishlist.map((item) => (
             <div

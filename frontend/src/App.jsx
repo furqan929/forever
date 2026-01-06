@@ -18,8 +18,6 @@ import MyOrder from './pages/MyOrder';
 import Admin from './pages/Admin';
 import Profile from './pages/Profile';
 import Settings from './components/Settings';
-import Success from './pages/Success';
-import Cancel from './pages/Cancel';
 import ProtectedRoute from './components/ProtectedRoute';
 import AuthRoute from './components/AuthRoute';
 import { Toaster } from 'sonner';
@@ -53,8 +51,6 @@ const App = () => {
         <Route path="/product/:id" element={<SingleProduct />} />
         <Route path="/wishlist" element={<WishList />} />
         <Route path='/CheckOut' element={<CheckOut />} />
-        <Route path='/success' element={<Success />} />
-        <Route path='/cancel' element={<Cancel />} />
         <Route path='/my-orders' element={<MyOrder />} />
         <Route path='/profile' element={<Profile />} />
         <Route path="/settings" element={<Settings />} />

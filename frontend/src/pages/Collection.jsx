@@ -18,6 +18,7 @@ import { useMyContext } from "../context/Context";
 import { toast } from "sonner";
 import axios from "axios";
 import { API_BASE_URL } from "../config/api";
+import LoadingSpinner from "../components/LoadingSpinner";
 
 const Products = () => {
   const { addCart, addToWishlist, wishlist } = useMyContext();
@@ -25,6 +26,7 @@ const Products = () => {
   const [categories, setCategories] = useState([]);
   const [brand, setBrand] = useState([]);
   const [cart, setCart] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [pagination, setPagination] = useState({
     current: 1,
     total: 1,
@@ -74,6 +76,7 @@ const Products = () => {
 
   // Fetch products
   const fetchProducts = async (currentFilters) => {
+    setLoading(true);
     try {
       const queryString = new URLSearchParams(currentFilters).toString();
       const response = await axios.get(
@@ -83,13 +86,16 @@ const Products = () => {
       setPagination(response.data.pagination);
     } catch (err) {
       console.error("Error fetching products:", err);
+    } finally {
+      setLoading(false);
     }
   };
 
   useEffect(() => {
-    fetchCategories();
-    fetchBrand();
-    fetchProducts(filters);
+    const loadInitialData = async () => {
+      await Promise.all([fetchCategories(), fetchBrand(), fetchProducts(filters)]);
+    };
+    loadInitialData();
   }, []);
 
   useEffect(() => {
@@ -554,6 +560,8 @@ const Products = () => {
                   </button>
                 </div>
               </div>
+            ) : loading ? (
+              <LoadingSpinner message="Loading products..." />
             ) : (
               <>
                 <div

@@ -4,12 +4,14 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useMyContext } from '../context/Context';
 import axios from 'axios';
 import { API_BASE_URL } from '../config/api';
+import LoadingSpinner from '../components/LoadingSpinner';
 
 const Profile = () => {
     const { cartItems, wishlist } = useMyContext()
 
     const [orders, setOrders] = useState([])
     const [user, setUser] = useState(null);
+    const [loading, setLoading] = useState(true);
 
     let navigate = useNavigate();
 
@@ -62,7 +64,12 @@ const Profile = () => {
 
     useEffect(() => {
         document.title = "My Profile - Forever";
-        loadUser();
+        const loadData = async () => {
+            setLoading(true);
+            await loadUser();
+            setLoading(false);
+        };
+        loadData();
     }, []);
 
     // ✅ Update Name Function
@@ -99,6 +106,10 @@ const Profile = () => {
             .toUpperCase()
             .slice(0, 2);
     };
+
+    if (loading) {
+        return <LoadingSpinner message="Loading profile..." />;
+    }
 
     return (
         <div className='min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/40 to-indigo-50/30'>
